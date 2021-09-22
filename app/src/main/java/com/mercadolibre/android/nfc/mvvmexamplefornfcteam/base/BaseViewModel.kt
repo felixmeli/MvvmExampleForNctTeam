@@ -27,6 +27,7 @@ abstract class BaseViewModel<T> : ViewModel() {
     val isLoading = MutableLiveData<Boolean>()
 
     protected val coroutineExceptionHandler = CoroutineExceptionHandler { _, _ ->
+        isLoading.postValue(false)
         onConnectionError.postValue(true)
     }
 
