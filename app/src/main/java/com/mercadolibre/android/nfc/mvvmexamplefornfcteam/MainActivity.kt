@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.databinding.ActivityMainBinding
 import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.flows.elephants.ElephantActivity
+import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.skd.FlowConceptTesting
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,8 +19,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        binding.elephantButton.setOnClickListener {
-            startActivity(Intent(this, ElephantActivity::class.java))
-        }
+        binding.elephantButton.setOnClickListener { startActivity(Intent(this, ElephantActivity::class.java)) }
+        binding.otherButton.setOnClickListener { startActivity(Intent(this, FlowConceptTesting::class.java)) }
     }
 }
