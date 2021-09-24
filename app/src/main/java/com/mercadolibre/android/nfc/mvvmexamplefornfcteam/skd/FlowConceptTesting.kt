@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.databinding.ActivityFlowConceptTestingBinding
+import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.extensions.setToolbar
 import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.skd.api.SdkApi
 import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.skd.service.SdkInitializerService
 import kotlinx.coroutines.flow.collect
@@ -13,12 +14,13 @@ import kotlinx.coroutines.launch
 class FlowConceptTesting : AppCompatActivity() {
     private lateinit var binding: ActivityFlowConceptTestingBinding
 
-    private var sdkInitializerService = SdkInitializerService.getInstance(sdkApi = SdkApi.getInstance(lifecycleScope))
+    private var sdkInitializerService = SdkInitializerService.getInstance(sdkApi = SdkApi.getInstance())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFlowConceptTestingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setToolbar(binding.simpleToolbar.toolbar)
         setPrimaryButton()
     }
 

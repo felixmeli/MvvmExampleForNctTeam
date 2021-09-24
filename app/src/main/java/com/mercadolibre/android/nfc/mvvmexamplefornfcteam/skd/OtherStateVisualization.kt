@@ -12,16 +12,14 @@ import kotlinx.coroutines.launch
 class OtherStateVisualization : AppCompatActivity() {
     private lateinit var binding: ActivityFlowConceptTestingBinding
 
-    private var sdkInitializerService = SdkInitializerService.getInstance(
-        sdkApi = SdkApi.getInstance(
-            externalScope = lifecycleScope)
-    )
+    private var sdkInitializerService = SdkInitializerService.getInstance(SdkApi.getInstance())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFlowConceptTestingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setPrimaryButton()
+        SdkApi.getInstance().sdkInit()
     }
 
     override fun onStart() {
