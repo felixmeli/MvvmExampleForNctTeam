@@ -4,7 +4,7 @@ import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.skd.api.SdkApi
 import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.skd.api.SdkApiState
 import kotlinx.coroutines.flow.*
 
-internal class SdkInitializerService(private val sdkApi: SdkApi) {
+class SdkInitializerService(private val sdkApi: SdkApi) {
 
     val latestState: Flow<String> =
         sdkApi.stateFlow.flatMapConcat<SdkApiState, String> { sdkApiState ->

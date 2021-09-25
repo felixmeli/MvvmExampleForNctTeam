@@ -6,7 +6,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-internal class SdkApi private constructor() {
+class SdkApi private constructor() {
 
     val scope = CoroutineScope(Job() + Dispatchers.IO)
 
