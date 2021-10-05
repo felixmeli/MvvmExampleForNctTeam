@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 class SdkApi private constructor() {
 
-    val scope = CoroutineScope(Job() + Dispatchers.IO)
+    private val scope = CoroutineScope(Job() + Dispatchers.IO)
 
     // Backing property to avoid flow emissions from other classes
     private val _stateFlow = MutableStateFlow<SdkApiState>(SdkApiState.InProgress(PROGRESS_MESSAGE))
