@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.databinding.ActivityMainBinding
 import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.flows.elephants.ElephantActivity
+import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.skd.Cancelacion
 import com.mercadolibre.android.nfc.mvvmexamplefornfcteam.skd.FlowConceptTesting
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         setListeners()
+        Cancelacion().confing()
     }
 
     private fun setListeners() {

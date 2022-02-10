@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.*
 
 class SdkInitializerService(private val sdkApi: SdkApi) {
 
-    val latestState: Flow<String> =
+    val latestState =
         sdkApi.stateFlow.flatMapConcat<SdkApiState, String> { sdkApiState ->
             when(sdkApiState) {
 

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 class SdkApi private constructor() {
 
-    val scope = CoroutineScope(Job() + Dispatchers.IO)
+    private val scope = CoroutineScope(Job() + Dispatchers.IO)
 
     // Backing property to avoid flow emissions from other classes
     private val _stateFlow = MutableStateFlow<SdkApiState>(SdkApiState.InProgress(PROGRESS_MESSAGE))
@@ -20,15 +20,18 @@ class SdkApi private constructor() {
 
     fun sdkInit() = scope.launch {
 
-            Log.i("SdkApi", "El sdk se está verificando...${Thread.currentThread()}")
-            if (stateFlow.value is SdkApiState.Success) cleanUp()
+        Log.i("SdkApi", "El sdk se está verificando...${Thread.currentThread()}")
+        if (stateFlow.value is SdkApiState.Success) cleanUp()
 
-            Log.i("SdkApi", "El sdk se está inicializando...${Thread.currentThread()}")
-            _stateFlow.emit(SdkApiState.InProgress(PROGRESS_MESSAGE))
-            delay(10000)
-            _stateFlow.emit(returnSuccess())
-            Log.i("SdkApi", "Respondió todo OK y entrega la data posta...${Thread.currentThread()}")
-            cleanUp()
+        Log.i("SdkApi", "El sdk se está inicializando...${Thread.currentThread()}")
+        _stateFlow.emit(SdkApiState.InProgress(PROGRESS_MESSAGE))
+        delay(10000)
+
+        Log.i("SdkApi", "esperando por la push...${Thread.currentThread()}")
+        _stateFlow.emit(SdkApiState.WatingForPush)
+        delay(10000)
+
+        cleanUp()
     }
 
     private fun returnError() =
